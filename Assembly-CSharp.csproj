@@ -823,6 +823,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="UniRx.csproj">
+      <Project>{50CD848E-C368-C208-CA1F-9A63CD3DD135}</Project>
+      <Name>UniRx</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
