@@ -56,7 +56,16 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\InputSystem\PlayerInput.cs" />
+    <Compile Include="Assets\Scripts\InputObserv\CheckInput.cs" />
+    <Compile Include="Assets\Scripts\Movement\Controll\CheckGroundController.cs" />
+    <Compile Include="Assets\Scripts\IInit.cs" />
+    <Compile Include="Assets\Scripts\Movement\Logic\MoveHorizontal.cs" />
+    <Compile Include="Assets\Scripts\Movement\Settings\MovementHorizontallSetting.cs" />
+    <Compile Include="Assets\Scripts\SettingsBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Movement\Controll\MoveController.cs" />
+    <Compile Include="Assets\Scripts\InputObserv\ObserverForUpdate.cs" />
+    <Compile Include="Assets\Scripts\Movement\Logic\JumpLogic.cs" />
+    <Compile Include="Assets\Scripts\Movement\Settings\JumpSetting.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -823,6 +832,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{42D3B1BD-F7C1-C5F6-73E7-62A09A2D072D}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
     <ProjectReference Include="UniRx.csproj">
       <Project>{50CD848E-C368-C208-CA1F-9A63CD3DD135}</Project>
       <Name>UniRx</Name>
