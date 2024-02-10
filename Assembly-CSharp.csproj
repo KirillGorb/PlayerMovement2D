@@ -61,11 +61,12 @@
     <Compile Include="Assets\Scripts\IInit.cs" />
     <Compile Include="Assets\Scripts\Movement\Logic\MoveHorizontal.cs" />
     <Compile Include="Assets\Scripts\Movement\Settings\MovementHorizontallSetting.cs" />
-    <Compile Include="Assets\Scripts\SettingsBehaviour.cs" />
     <Compile Include="Assets\Scripts\Movement\Controll\MoveController.cs" />
     <Compile Include="Assets\Scripts\InputObserv\ObserverForUpdate.cs" />
     <Compile Include="Assets\Scripts\Movement\Logic\JumpLogic.cs" />
     <Compile Include="Assets\Scripts\Movement\Settings\JumpSetting.cs" />
+    <Compile Include="Assets\Scripts\Blocks\BlackBlock.cs" />
+    <Compile Include="Assets\Scripts\Movement\Abstraction\ISettingMoveble.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

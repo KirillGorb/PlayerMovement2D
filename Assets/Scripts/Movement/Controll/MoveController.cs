@@ -1,11 +1,13 @@
 ﻿using Play.Input;
 using Play.Movement.Setting;
+using Play.Movement.Abstraction;
 using UnityEngine;
+using UniRx;
 
 namespace Play.Movement.Controller
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class MoveController : MonoBehaviour
+    public class MoveController : MonoBehaviour, ISettingMoveble
     {
         [SerializeField] private MovementHorizontallSetting _horizontallSetting;
         [SerializeField] private JumpSetting _jumpSetting;
@@ -16,6 +18,11 @@ namespace Play.Movement.Controller
 
         private MoveHorizontal _moveHorizontal;
         private JumpLogic _jump;
+
+        public BoolReactiveProperty IsCanMoveHorizontal => _horizontallSetting.IsCanMoveHorizontal;
+        public JumpSetting JumpSettings => _jumpSetting;
+        public Rigidbody2D GetRigidbody2D => _rd;
+        public Transform GetTransform => transform;
 
         private void Start()
         {
