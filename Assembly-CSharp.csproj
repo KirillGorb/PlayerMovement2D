@@ -56,18 +56,20 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Movement\Abstraction\ISettingMoveble.cs" />
     <Compile Include="Assets\Scripts\InputObserv\CheckInput.cs" />
+    <Compile Include="Assets\Scripts\Blocks\BlackBlock.cs" />
+    <Compile Include="Assets\Scripts\InputObserv\ObserverForUpdate.cs" />
+    <Compile Include="Assets\Scripts\Movement\Settings\JumpSetting.cs" />
+    <Compile Include="Assets\Scripts\Blocks\FlashingBlocks.cs" />
     <Compile Include="Assets\Scripts\Movement\Controll\CheckGroundController.cs" />
     <Compile Include="Assets\Scripts\IInit.cs" />
-    <Compile Include="Assets\Scripts\Movement\Logic\MoveHorizontal.cs" />
-    <Compile Include="Assets\Scripts\Movement\Settings\MovementHorizontallSetting.cs" />
     <Compile Include="Assets\Scripts\Movement\Controll\MoveController.cs" />
-    <Compile Include="Assets\Scripts\InputObserv\ObserverForUpdate.cs" />
+    <Compile Include="Assets\Scripts\Movement\Settings\MovementHorizontallSetting.cs" />
+    <Compile Include="Assets\Scripts\Movement\Logic\MoveHorizontal.cs" />
     <Compile Include="Assets\Scripts\Movement\Logic\JumpLogic.cs" />
-    <Compile Include="Assets\Scripts\Movement\Settings\JumpSetting.cs" />
-    <Compile Include="Assets\Scripts\Blocks\BlackBlock.cs" />
-    <Compile Include="Assets\Scripts\Movement\Abstraction\ISettingMoveble.cs" />
     <Compile Include="Assets\Scripts\Blocks\FallDownBlock.cs" />
+    <Compile Include="Assets\Scripts\Blocks\FlashingTwoBlocks.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
