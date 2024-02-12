@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\Movement\Abstraction\ISettingMoveble.cs" />
     <Compile Include="Assets\Scripts\InputObserv\CheckInput.cs" />
     <Compile Include="Assets\Scripts\Blocks\BlackBlock.cs" />
+    <Compile Include="Assets\Scripts\Camera\MoveCamera.cs" />
     <Compile Include="Assets\Scripts\InputObserv\ObserverForUpdate.cs" />
     <Compile Include="Assets\Scripts\Movement\Settings\JumpSetting.cs" />
     <Compile Include="Assets\Scripts\Blocks\FlashingBlocks.cs" />

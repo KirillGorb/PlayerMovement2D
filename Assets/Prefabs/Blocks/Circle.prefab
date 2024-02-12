@@ -115,3 +115,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 0}
+  maxRadiyse: 3
+  speedDist: 10
+  _k_speedDrop: 3
+  _k_speedMax: 30
+  _k_speedOverRadiyse: 3
+  _k_speedDropDistancy: 10
+  _k_minSpeed: 5
