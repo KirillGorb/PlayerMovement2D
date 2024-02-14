@@ -5,15 +5,15 @@ public static class MovebleTo
 {
     public static async Task MoveToAsync(Transform transform, Vector3 to, float speed)
     {
-        while (transform.position != transform.position + to)
+        while (transform.position !=  to)
         {
-            transform.position = Vector3.MoveTowards(transform.position, transform.position + to, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, to, speed * Time.deltaTime);
             await Task.Yield();
         }
     }
 
     public static void MoveTo(Transform transform, Vector3 to, float speed) =>
-        transform.position = Vector3.MoveTowards(transform.position, transform.position + to, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, to, speed * Time.deltaTime);
 
     public static void RotateToTime(Transform transform, Vector3 to, float speed)
     {
