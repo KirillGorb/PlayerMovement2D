@@ -1,4 +1,11 @@
-
 Library/
 Logs/
 Temp/
+.idea/
+Assembly-CSharp-firstpass.csproj
+Assembly-CSharp.csproj
+obj/
+objs/
+UniRx.Examples.csproj
+UniRx.csproj
+Player2DMovement.sln
