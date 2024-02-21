@@ -1,6 +1,7 @@
 using Play.Input;
 using Play.Movement.Abstraction;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 namespace Play.Block
@@ -8,15 +9,13 @@ namespace Play.Block
     public class BlackBlock : MonoBehaviour
     {
         [SerializeField] private CheckInput input;
-        [Space]
-        [SerializeField] private float maxRadiyse = 4;
+        [Space] [SerializeField] private float maxRadiyse = 4;
         [SerializeField] private float speedDist = 0.2f;
-        [Space]
-        [SerializeField] private float _k_speedDrop = 3;
+        [Space] [SerializeField] private float _k_speedDrop = 3;
         [SerializeField] private float _k_speedMax = 6;
         [SerializeField] private float _k_speedOverRadiyse = 3.5f;
         [SerializeField] private float _k_speedDropDistancy = 6;
-        [SerializeField] private float _k_minSpeed= 6;
+        [SerializeField] private float _k_minSpeed = 6;
 
         private Rigidbody2D _playerRD;
         private Transform _playerPos;
@@ -42,12 +41,16 @@ namespace Play.Block
         private void Start()
         {
             IsConectPLayer = false;
-            input.JumpInput.Subscribe(e => { if (e && _isConect) StartCoroutine(TimerDisconnect()); });
+            input.JumpInput.Subscribe(e =>
+            {
+                if (e && _isConect) StartCoroutine(TimerDisconnect());
+            });
         }
 
         private void Update()
         {
             if (!_isConect) return;
+
 
             if (_dist < _maxRadiyse)
                 _dist += Time.deltaTime * _speedUpDististancy;
@@ -58,7 +61,9 @@ namespace Play.Block
             if (_steps > _stepMax)
                 _steps = 0;
             _startPos = transform.position;
-            var velocity = Eleps(_maxRadiyse, _dist, _steps, _startPos, _steps >= _stepsMin ? _angel : _angel + _offset, _steps >= _stepsMin) - (Vector2)_playerPos.position;
+            var velocity =
+                Eleps(_maxRadiyse, _dist, _steps, _startPos, _steps >= _stepsMin ? _angel : _angel + _offset,
+                    _steps >= _stepsMin) - (Vector2)_playerPos.position;
             _playerRD.velocity = velocity;
         }
 
@@ -73,7 +78,8 @@ namespace Play.Block
                 _playerPos = _setting.GetTransform;
 
                 _speed = Mathf.Min(_playerRD.velocity.magnitude / _k_speedDrop, _k_minSpeed);
-                _dist = Vector2.Distance(transform.position, collision.transform.position) / Mathf.Abs(_k_speedMax - _speed);
+                _dist = Vector2.Distance(transform.position, collision.transform.position) /
+                        Mathf.Abs(_k_speedMax - _speed);
                 var dir = transform.position - collision.transform.position;
                 _angel = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
                 _maxRadiyse = maxRadiyse + _speed * _k_speedOverRadiyse;
@@ -83,20 +89,6 @@ namespace Play.Block
                 _isConect = true;
             }
         }
-
-        //#if UNITY_EDITOR
-        //        private void OnDrawGizmos()
-        //        {
-        //            Gizmos.color = Color.red;
-        //            Vector2 nextPos = Eleps(Radiuse, _dist, 0, _startPos, _angel);
-        //            for (float i = 0; i < _stepMax; i += Time.deltaTime * _speed)
-        //            {
-        //                Vector2 newPos = Eleps(Radiuse, _dist, i, _startPos, i > _stepsMin ? _angel : _angel + _offset, i > _stepsMin);
-        //                Gizmos.DrawLine(nextPos, newPos);
-        //                nextPos = newPos;
-        //            }
-        //        }
-        //#endif
 
         private Vector2 Eleps(float a, float b, float m, Vector2 pos, float k, bool isMin = false)
         {
@@ -115,15 +107,12 @@ namespace Play.Block
         private IEnumerator TimerDisconnect()
         {
             _isConect = false;
-            yield return new WaitForSeconds(_playerRD.velocity.magnitude / (_setting.JumpSettings.GravityDownMove * 2.5f));
+            _playerRD.AddForce(-_playerRD.velocity/3);
+            yield return new WaitForSeconds(_playerRD.velocity.magnitude /
+                                            (_setting.JumpSettings.GravityDownMove * 2.5f));
             _setting.JumpSettings.IsCanJump.Value = true;
             _setting.IsCanMoveHorizontal.Value = true;
             IsConectPLayer = false;
-        }
-
-        private void OnDestroy()
-        {
-
         }
     }
 }

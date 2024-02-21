@@ -1,3 +1,4 @@
+using System;
 using Play.Movement.Abstraction;
 using UnityEngine;
 using Zenject;
@@ -17,7 +18,7 @@ namespace Play.Block
         [Inject]
         private void Init(Rotate3DUpdater updater) => _updater = updater;
 
-        public async void Update()
+        public void Update()
         {
             if (!_isConnect) return;
 
@@ -29,9 +30,9 @@ namespace Play.Block
                 _isConnect = false;
                 _setting.JumpSettings.IsCanJump.Value = true;
                 _setting.IsCanMoveHorizontal.Value = true;
-                await MovebleTo.MoveToAsync(_setting.GetTransform,
-                    new(_setting.GetTransform.position.x, _setting.GetTransform.position.y, 0), 5);
-                _updater.RemoveCheck(this);
+                MovebleTo.MoveToAsync(_setting.GetTransform,
+                    new(_setting.GetTransform.position.x, _setting.GetTransform.position.y, 0), 5,
+                    0.2f, () => _updater.RemoveCheck(this));
             }
         }
 
@@ -43,7 +44,7 @@ namespace Play.Block
                 setting.JumpSettings.IsCanJump.Value = false;
                 setting.IsCanMoveHorizontal.Value = false;
                 await MovebleTo.MoveToAsync(_setting.GetTransform,
-                    new(pointConnect.position.x, _setting.GetTransform.position.y, pointConnect.position.z), 5);
+                    new(pointConnect.position.x, _setting.GetTransform.position.y, pointConnect.position.z), 5, 0.2f);
                 _isConnect = true;
                 _updater.AddCheck(this);
             }
