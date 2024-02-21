@@ -18,7 +18,7 @@ namespace Play.Block
                 _setting.MoveSetting.IsCanMoveHorizontal.Value = false;
                 _setting.JumpSettings.IsCanJump.Value = false;
 
-                _setting.GetRigidbody2D.AddForce(_setting.GetRigidbody2D.velocity / speedDir);
+                _setting.GetRigidbody2D.AddForce(_setting.GetRigidbody2D.velocity * speedDir);
 
                 await Task.Delay((int)(timeAdd * 1000));
                 _setting.MoveSetting.IsCanMoveHorizontal.Value = true;
