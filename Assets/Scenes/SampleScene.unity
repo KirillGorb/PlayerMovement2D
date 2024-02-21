@@ -281,10 +281,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Circle (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 3989504631521849701, guid: 8f6fc7bcae000bb4f8406cb9483b9afd, type: 3}
-      propertyPath: input
-      value: 
-      objectReference: {fileID: 519420033}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f6fc7bcae000bb4f8406cb9483b9afd, type: 3}
 --- !u!1 &85282469
@@ -460,7 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointConnect: {fileID: 1121577061}
-  speedRot: -0.5
+  speedRot: -0.25
 --- !u!61 &281508479
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -558,10 +554,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Circle (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 3989504631521849701, guid: 8f6fc7bcae000bb4f8406cb9483b9afd, type: 3}
-      propertyPath: input
-      value: 
-      objectReference: {fileID: 519420033}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f6fc7bcae000bb4f8406cb9483b9afd, type: 3}
 --- !u!1001 &409789034
@@ -619,10 +611,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Circle (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 3989504631521849701, guid: 8f6fc7bcae000bb4f8406cb9483b9afd, type: 3}
-      propertyPath: input
-      value: 
-      objectReference: {fileID: 519420033}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f6fc7bcae000bb4f8406cb9483b9afd, type: 3}
 --- !u!1 &412961775
@@ -993,7 +981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointConnect: {fileID: 682957058}
-  speedRot: -0.5
+  speedRot: -0.25
 --- !u!61 &653932826
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1940,10 +1928,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Circle (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 3989504631521849701, guid: 8f6fc7bcae000bb4f8406cb9483b9afd, type: 3}
-      propertyPath: input
-      value: 
-      objectReference: {fileID: 519420033}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f6fc7bcae000bb4f8406cb9483b9afd, type: 3}
 --- !u!1001 &1664781297
@@ -2664,7 +2648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointConnect: {fileID: 1224151065}
-  speedRot: -0.5
+  speedRot: -0.25
 --- !u!61 &2145888253
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2889,6 +2873,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rotate3D
       objectReference: {fileID: 0}
+    - target: {fileID: 3728296772615290938, guid: 1e9d64a5d366b2a45938cf9641dc1828, type: 3}
+      propertyPath: speedRot
+      value: -0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 3728296772615290939, guid: 1e9d64a5d366b2a45938cf9641dc1828, type: 3}
       propertyPath: m_RootOrder
       value: 24
@@ -3047,10 +3035,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Circle
       objectReference: {fileID: 0}
-    - target: {fileID: 3989504631521849701, guid: 8f6fc7bcae000bb4f8406cb9483b9afd, type: 3}
-      propertyPath: input
-      value: 
-      objectReference: {fileID: 519420033}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f6fc7bcae000bb4f8406cb9483b9afd, type: 3}
 --- !u!1001 &6690472956624362531

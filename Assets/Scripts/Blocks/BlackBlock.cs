@@ -3,12 +3,12 @@ using Play.Movement.Abstraction;
 using System.Collections;
 using UnityEditor;
 using UnityEngine;
+using Zenject;
 
 namespace Play.Block
 {
     public class BlackBlock : MonoBehaviour
     {
-        [SerializeField] private CheckInput input;
         [Space] [SerializeField] private float maxRadiyse = 4;
         [SerializeField] private float speedDist = 0.2f;
         [Space] [SerializeField] private float _k_speedDrop = 3;
@@ -17,6 +17,7 @@ namespace Play.Block
         [SerializeField] private float _k_speedDropDistancy = 6;
         [SerializeField] private float _k_minSpeed = 6;
 
+        [Inject] private CheckInput input;
         private Rigidbody2D _playerRD;
         private Transform _playerPos;
         private ISettingMoveble _setting;
@@ -107,7 +108,7 @@ namespace Play.Block
         private IEnumerator TimerDisconnect()
         {
             _isConect = false;
-            _playerRD.AddForce(-_playerRD.velocity/3);
+            _playerRD.AddForce(-_playerRD.velocity / 3);
             yield return new WaitForSeconds(_playerRD.velocity.magnitude /
                                             (_setting.JumpSettings.GravityDownMove * 2.5f));
             _setting.JumpSettings.IsCanJump.Value = true;
