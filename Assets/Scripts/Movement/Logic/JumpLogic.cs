@@ -1,13 +1,14 @@
-﻿using Play.Abstraction;
+﻿using System;
+using Play.Abstraction;
 using Play.Input;
 using Play.Movement.Setting;
 using UniRx;
 using UnityEngine;
-using System;
 
 namespace Play.Movement.Controller
 {
-    public class JumpLogic : IDisposable, IInit<CheckInput>, IInit<JumpSetting>, IInit<Rigidbody2D>, IInit<(CheckGroundController, CheckGroundController)>
+    public class JumpLogic : IDisposable, IInit<CheckInput>, IInit<JumpSetting>, IInit<Rigidbody2D>,
+        IInit<(CheckGroundController, CheckGroundController)>
     {
         private CompositeDisposable _disposables = new CompositeDisposable();
 
@@ -26,18 +27,22 @@ namespace Play.Movement.Controller
         private Rigidbody2D _rd;
 
         #region Init
+
         public void Init(CheckInput data)
         {
             data.JumpInput.Subscribe(Jump);
             data.SharpDescent.Subscribe(e => _sharpDescent = e).AddTo(_disposables);
         }
+
         public void Init(JumpSetting data) => _setting = data;
         public void Init(Rigidbody2D data) => _rd = data;
+
         public void Init((CheckGroundController, CheckGroundController) checkGroundHead)
         {
             _checkGround = checkGroundHead.Item1;
             _checkHead = checkGroundHead.Item2;
         }
+
         #endregion
 
         private void Jump(bool jumpClick)
@@ -52,6 +57,7 @@ namespace Play.Movement.Controller
                     _jumpImpulse = _setting.JumpImpulse;
                     _jumpTime = _setting.JumpTime;
                 }
+
                 if ((_jumpTime > 0 || _jumpImpulse > 0) && !_checkHead.CheckGround && !_sharpDescent)
                 {
                     _jumpImpulse -= _setting.Velocity * Time.deltaTime;
@@ -66,6 +72,7 @@ namespace Play.Movement.Controller
                     _isJumpFly = false;
                     return;
                 }
+
                 return;
             }
 
@@ -95,7 +102,7 @@ namespace Play.Movement.Controller
         }
 
         private void SetJump(float y) =>
-                _rd.velocity = new Vector2(_rd.velocity.x, y);
+            _rd.velocity = new Vector2(_rd.velocity.x, y);
 
         public void Dispose() => _disposables.Clear();
     }

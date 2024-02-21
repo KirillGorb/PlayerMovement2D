@@ -1,15 +1,14 @@
-﻿using UnityEngine;
-using UniRx;
+﻿using UniRx;
+using UnityEngine;
 
 namespace Play.Movement.Setting
 {
-    public class MovementHorizontallSetting : MonoBehaviour
+    [CreateAssetMenu()]
+    public class MovementHorizontalSetting : ScriptableObject
     {
         [SerializeField] private float speed;
-        [SerializeField] private float maxClimbAngle;
 
         public float Speed => speed;
-        public float MaxClimbAngle => maxClimbAngle;
         public BoolReactiveProperty IsCanMoveHorizontal { get; } = new BoolReactiveProperty(true);
     }
 }

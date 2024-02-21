@@ -1,29 +1,37 @@
 using Play.Movement.Abstraction;
 using UnityEngine;
+using Zenject;
 
 namespace Play.Block
 {
-    public class RotateIn3DBlock : MonoBehaviour
+    public class RotateIn3DBlock : MonoBehaviour, IUpdater
     {
         [SerializeField] private Transform pointConnect;
         [SerializeField] private float speedRot;
 
         private ISettingMoveble _setting;
-        private bool _isConnect = false;
+        private Rotate3DUpdater _updater;
 
-        private async void Update()
+        private bool _isConnect;
+
+        [Inject]
+        private void Init(Rotate3DUpdater updater) => _updater = updater;
+
+        public async void Update()
         {
             if (!_isConnect) return;
 
             transform.Rotate(0, speedRot, 0);
-            _setting.GetTransform.position = new(pointConnect.position.x, _setting.GetTransform.position.y, pointConnect.position.z);
+            _setting.GetTransform.position = new(pointConnect.position.x, _setting.GetTransform.position.y,
+                pointConnect.position.z);
             if (_setting.GetTransform.position.z >= 0)
             {
                 _isConnect = false;
                 _setting.JumpSettings.IsCanJump.Value = true;
                 _setting.IsCanMoveHorizontal.Value = true;
-                await MovebleTo.MoveToAsync(_setting.GetTransform, new(_setting.GetTransform.position.x, _setting.GetTransform.position.y, 0), 5);
-                Destroy(this);
+                await MovebleTo.MoveToAsync(_setting.GetTransform,
+                    new(_setting.GetTransform.position.x, _setting.GetTransform.position.y, 0), 5);
+                _updater.RemoveCheck(this);
             }
         }
 
@@ -34,8 +42,10 @@ namespace Play.Block
                 _setting = setting;
                 setting.JumpSettings.IsCanJump.Value = false;
                 setting.IsCanMoveHorizontal.Value = false;
-                await MovebleTo.MoveToAsync(_setting.GetTransform, new(pointConnect.position.x, _setting.GetTransform.position.y,pointConnect.position.z), 5);
+                await MovebleTo.MoveToAsync(_setting.GetTransform,
+                    new(pointConnect.position.x, _setting.GetTransform.position.y, pointConnect.position.z), 5);
                 _isConnect = true;
+                _updater.AddCheck(this);
             }
         }
     }

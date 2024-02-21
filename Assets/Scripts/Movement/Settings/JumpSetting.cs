@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace Play.Movement.Setting
 {
-    public class JumpSetting : MonoBehaviour
+    [CreateAssetMenu()]
+    public class JumpSetting : ScriptableObject
     {
         [SerializeField] private float velocity;
         [SerializeField] private float velocityGravity;
