@@ -74,7 +74,7 @@ namespace Play.Block
             {
                 _setting = setting;
                 _setting.JumpSettings.IsCanJump.Value = false;
-                _setting.IsCanMoveHorizontal.Value = false;
+                _setting.MoveSetting.IsCanMoveHorizontal.Value = false;
                 _playerRD = _setting.GetRigidbody2D;
                 _playerPos = _setting.GetTransform;
 
@@ -112,7 +112,7 @@ namespace Play.Block
             yield return new WaitForSeconds(_playerRD.velocity.magnitude /
                                             (_setting.JumpSettings.GravityDownMove * 2.5f));
             _setting.JumpSettings.IsCanJump.Value = true;
-            _setting.IsCanMoveHorizontal.Value = true;
+            _setting.MoveSetting.IsCanMoveHorizontal.Value = true;
             IsConectPLayer = false;
         }
     }

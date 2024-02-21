@@ -6,7 +6,7 @@ namespace Play.Movement.Abstraction
 {
     public interface ISettingMoveble
     {
-        public BoolReactiveProperty IsCanMoveHorizontal { get; }
+        public MovementHorizontalSetting MoveSetting { get; }
 
         public JumpSetting JumpSettings { get; }
 

@@ -29,7 +29,7 @@ namespace Play.Block
             {
                 _isConnect = false;
                 _setting.JumpSettings.IsCanJump.Value = true;
-                _setting.IsCanMoveHorizontal.Value = true;
+                _setting.MoveSetting.IsCanMoveHorizontal.Value = true;
                 MovebleTo.MoveToAsync(_setting.GetTransform,
                     new(_setting.GetTransform.position.x, _setting.GetTransform.position.y, 0), 5,
                     0.2f, () => _updater.RemoveCheck(this));
@@ -42,7 +42,7 @@ namespace Play.Block
             {
                 _setting = setting;
                 setting.JumpSettings.IsCanJump.Value = false;
-                setting.IsCanMoveHorizontal.Value = false;
+                setting.MoveSetting.IsCanMoveHorizontal.Value = false;
                 await MovebleTo.MoveToAsync(_setting.GetTransform,
                     new(pointConnect.position.x, _setting.GetTransform.position.y, pointConnect.position.z), 5, 0.2f);
                 _isConnect = true;

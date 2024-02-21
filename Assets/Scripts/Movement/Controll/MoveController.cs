@@ -20,7 +20,7 @@ namespace Play.Movement.Controller
         private MoveHorizontal _moveHorizontal;
         private JumpLogic _jump;
 
-        public BoolReactiveProperty IsCanMoveHorizontal => _horizontalSetting.IsCanMoveHorizontal;
+        public MovementHorizontalSetting MoveSetting => _horizontalSetting;
         public JumpSetting JumpSettings => _jumpSetting;
         public Rigidbody2D GetRigidbody2D => _rd;
         public Transform GetTransform => transform;
