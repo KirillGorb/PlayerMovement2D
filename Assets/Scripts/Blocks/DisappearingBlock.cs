@@ -15,7 +15,7 @@ namespace Play.Block
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (!_isDisActive)
+            if (!_isDisActive && transform.position.y <= other.transform.position.y)
             {
                 _isDisActive = true;
                 StartCoroutine(Timer());
