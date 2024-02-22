@@ -9,13 +9,10 @@ namespace Play.Movement.Setting
     {
         [SerializeField] private float speed;
         
-        private float _modif = 0;
+        public ModificateLogic ModValueSpeed { get; } = new ModificateLogic();
+        public ModificateLogic ModValueX { get; } = new ModificateLogic();
 
-        public void AddModifSpeed(float mod) => _modif += mod;
-        public void RemoveModifSpeed(float mod) => _modif -= mod;
-        public void ClearModifSpeed(float mod) => _modif = 0;
-        
-        public float Speed => speed + _modif;
+        public float Speed => speed + ModValueSpeed.GetMod;
         public BoolReactiveProperty IsCanMoveHorizontal { get; } = new BoolReactiveProperty(true);
     }
 }

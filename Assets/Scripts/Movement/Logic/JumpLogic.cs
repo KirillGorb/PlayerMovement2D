@@ -102,7 +102,7 @@ namespace Play.Movement.Controller
         }
 
         private void SetJump(float y) =>
-            _rd.velocity = new Vector2(_rd.velocity.x, y);
+            _rd.velocity = new Vector2(_rd.velocity.x, y + _setting.ModValueY.GetMod);
 
         public void Dispose() => _disposables.Clear();
     }

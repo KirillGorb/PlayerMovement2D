@@ -14,6 +14,8 @@ namespace Play.Movement.Setting
         [SerializeField] private float gravityDownMove;
         [SerializeField] private float dopTimeFly;
 
+        public ModificateLogic ModValueY { get; } = new ModificateLogic();
+
         public float Velocity => velocity;
         public float VelocityGravity => velocityGravity;
         public float JumpTime => jumpTime;

@@ -22,7 +22,7 @@ namespace Play.Movement.Controller
         private void Move(float directionInput)
         {
             if (_setting.IsCanMoveHorizontal.Value)
-                _rd.velocity = new Vector2(_setting.Speed * directionInput, _rd.velocity.y);
+                _rd.velocity = new Vector2(_setting.Speed * directionInput + _setting.ModValueX.GetMod, _rd.velocity.y);
         }
     }
 }
