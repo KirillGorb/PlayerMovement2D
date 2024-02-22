@@ -15,11 +15,11 @@ namespace Play.Movement.Controller
         private float _startJumpImpulse;
         private float _jumpTime;
         private float _jumpImpulse;
-        private float _gravity;
         private float _dopJumpHightTime;
+        private float _gravityValue;
 
-        private bool _isJumpFly = false;
-        private bool _sharpDescent = false;
+        private bool _isJumpFly;
+        private bool _sharpDescent;
 
         private CheckGroundController _checkGround;
         private CheckGroundController _checkHead;
@@ -34,8 +34,17 @@ namespace Play.Movement.Controller
             data.SharpDescent.Subscribe(e => _sharpDescent = e).AddTo(_disposables);
         }
 
-        public void Init(JumpSetting data) => _setting = data;
-        public void Init(Rigidbody2D data) => _rd = data;
+        public void Init(JumpSetting data)
+        {
+            _setting = data;
+            _setting.IsCanJump.Subscribe(e => _rd.gravityScale = e ? _gravityValue : 0).AddTo(_disposables);
+        }
+
+        public void Init(Rigidbody2D data)
+        {
+            _rd = data;
+            _gravityValue = _rd.gravityScale;
+        }
 
         public void Init((CheckGroundController, CheckGroundController) checkGroundHead)
         {
@@ -68,7 +77,6 @@ namespace Play.Movement.Controller
                 {
                     _jumpTime = _setting.JumpTime;
                     _jumpImpulse = _startJumpImpulse;
-                    _gravity = _sharpDescent ? _setting.GravityDownMove : 0;
                     _isJumpFly = false;
                     return;
                 }
@@ -76,28 +84,12 @@ namespace Play.Movement.Controller
                 return;
             }
 
-            FlyDown();
             if (_checkGround.CheckGround && jumpClick)
             {
                 _isJumpFly = true;
                 _dopJumpHightTime = _setting.DopTimeFly;
                 _jumpImpulse = _setting.JumpImpulse;
                 _jumpTime = _setting.JumpTime;
-            }
-        }
-
-        private void FlyDown()
-        {
-            if (!_checkGround.CheckGround)
-            {
-                if (_sharpDescent) _gravity = _setting.GravityDownMove;
-                _gravity += _setting.VelocityGravity * Time.deltaTime;
-                SetJump(-Mathf.Min(_gravity, _setting.MaxGravity));
-            }
-            else
-            {
-                SetJump(Mathf.Min(0, _rd.velocity.y));
-                _gravity = 0;
             }
         }
 
