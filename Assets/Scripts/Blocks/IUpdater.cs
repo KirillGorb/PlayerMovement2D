@@ -4,9 +4,4 @@ namespace Play.Block
     {
         public void Update();
     }
-    
-    public interface IUpdater<T>
-    {
-        public T Update();
-    }
 }
