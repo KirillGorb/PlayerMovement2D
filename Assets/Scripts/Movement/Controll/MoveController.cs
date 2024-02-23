@@ -1,7 +1,6 @@
 ﻿using Play.Input;
 using Play.Movement.Abstraction;
 using Play.Movement.Setting;
-using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -11,25 +10,30 @@ namespace Play.Movement.Controller
     public class MoveController : MonoBehaviour, ISettingMoveble
     {
         [SerializeField] private Rigidbody2D _rd;
+
         [SerializeField] private CheckGroundController _checkGroundDown;
         [SerializeField] private CheckGroundController _checkGroundHead;
 
-        private MovementHorizontalSetting _horizontalSetting;
-        private JumpSetting _jumpSetting;
+        [SerializeField] private JumpSetting jumpSetting;
+        [SerializeField] private MovementHorizontalSetting horizontalSetting;
+
+        [SerializeField] private float higthPlayer;
+
         private CheckInput _input;
         private MoveHorizontal _moveHorizontal;
         private JumpLogic _jump;
 
-        public MovementHorizontalSetting MoveSetting => _horizontalSetting;
-        public JumpSetting JumpSettings => _jumpSetting;
+        public MovementHorizontalSetting MoveSetting => horizontalSetting;
+        public JumpSetting JumpSettings => jumpSetting;
         public Rigidbody2D GetRigidbody2D => _rd;
         public Transform GetTransform => transform;
 
+        public bool IsValueUpPlayer(Transform posTarget) =>
+            posTarget.position.y + higthPlayer <= transform.position.y;
+
         [Inject]
-        private void Init(MovementHorizontalSetting horizontalSetting, JumpSetting jumpSetting, CheckInput input)
+        private void Inject(CheckInput input)
         {
-            _horizontalSetting = horizontalSetting;
-            _jumpSetting = jumpSetting;
             _input = input;
         }
 
@@ -38,12 +42,12 @@ namespace Play.Movement.Controller
             _moveHorizontal = new MoveHorizontal();
             _moveHorizontal.Init(_rd);
             _moveHorizontal.Init(_input);
-            _moveHorizontal.Init(_horizontalSetting);
+            _moveHorizontal.Init(horizontalSetting);
 
             _jump = new JumpLogic();
             _jump.Init(_rd);
             _jump.Init(_input);
-            _jump.Init(_jumpSetting);
+            _jump.Init(jumpSetting);
             _jump.Init((_checkGroundDown, _checkGroundHead));
         }
     }

@@ -17,7 +17,6 @@ namespace Play.Block
         [SerializeField] private float _k_speedDropDistancy = 6;
         [SerializeField] private float _k_minSpeed = 6;
 
-        [Inject] private CheckInput input;
         private Rigidbody2D _playerRD;
         private Transform _playerPos;
         private ISettingMoveble _setting;
@@ -39,13 +38,18 @@ namespace Play.Block
 
         public float Radiuse => _maxRadiyse / _speed;
 
-        private void Start()
+        [Inject]
+        private void Injecting(CheckInput input)
         {
-            IsConectPLayer = false;
             input.JumpInput.Subscribe(e =>
             {
                 if (e && _isConect) StartCoroutine(TimerDisconnect());
             });
+        }
+
+        private void Start()
+        {
+            IsConectPLayer = false;
         }
 
         private void Update()

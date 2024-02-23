@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f164b77415b46c049a3ee95251a0b9fc, type: 3}
   m_Name: JumpSetting
   m_EditorClassIdentifier: 
+  higthPlayer: 1.1
   velocity: 140
-  velocityGravity: 100
   jumpTime: 0.01
   jumpImpulse: 25
-  maxGravity: 30
   gravityDownMove: 25
   dopTimeFly: 0.1

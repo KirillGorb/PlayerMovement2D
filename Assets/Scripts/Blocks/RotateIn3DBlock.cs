@@ -38,7 +38,8 @@ namespace Play.Block
 
         private async void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.TryGetComponent(out ISettingMoveble setting))
+            if (collision.gameObject.TryGetComponent(out ISettingMoveble setting)&&
+                setting.IsValueUpPlayer(transform))
             {
                 _setting = setting;
                 setting.JumpSettings.IsCanJump.Value = false;

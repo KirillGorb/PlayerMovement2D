@@ -21,7 +21,9 @@ namespace Play.Block
                 Destroy(this);
                 Destroy(rd);
             }
-            if (collision.gameObject.GetComponent<ISettingMoveble>() != null && transform.position.y + transform.localScale.y/2 <= collision.transform.position.y)
+
+            if (collision.gameObject.TryGetComponent(out ISettingMoveble setting) &&
+                setting.IsValueUpPlayer(transform))
                 StartCoroutine(TimerFall());
         }
 
