@@ -9,6 +9,7 @@ namespace Play.Input
         private PlayerInput _input;
         private bool _clickJumpValue;
 
+        public ObserverForUpdate<Vector2> DeshInput { get; } = new ObserverForUpdate<Vector2>();
         public ObserverForUpdate<float> HorizontalInput { get; } = new ObserverForUpdate<float>();
         public ObserverForUpdate<bool> JumpInput { get; } = new ObserverForUpdate<bool>();
         public BoolReactiveProperty SharpDescent { get; } = new BoolReactiveProperty();
@@ -30,6 +31,7 @@ namespace Play.Input
 
             JumpInput.SetValue(() => _clickJumpValue).AddTo(_disposables);
             HorizontalInput.SetValue(() => _input.Movement.Horizontal.ReadValue<float>()).AddTo(_disposables);
+            DeshInput.SetValue(() => _input.Movement.Desh.ReadValue<Vector2>()).AddTo(_disposables);
 
             _input.Movement.SharpDescent.canceled += e => SharpDescent.Value = false;
             _input.Movement.SharpDescent.performed += e => SharpDescent.Value = true;

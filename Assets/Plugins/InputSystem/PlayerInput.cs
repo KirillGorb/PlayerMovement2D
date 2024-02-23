@@ -53,6 +53,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Desh"",
+                    ""type"": ""Value"",
+                    ""id"": ""9d4d1706-f6d9-4946-bc7e-441b3073571d"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -165,6 +174,61 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""SharpDescent"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""fc6a406e-a020-4523-888f-b281bc1edea1"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Desh"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""7a6c28f8-d591-42da-8e41-22adc26cb19f"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Desh"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""8daa8e6a-746b-40b0-bef9-87000c20fe48"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Desh"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""cb81657a-44c7-4c57-8998-55572f3b90b6"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Desh"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""1c248dca-c433-46ed-adcd-175f9e626e1c"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Desh"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -199,6 +263,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Movement_Horizontal = m_Movement.FindAction("Horizontal", throwIfNotFound: true);
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
         m_Movement_SharpDescent = m_Movement.FindAction("SharpDescent", throwIfNotFound: true);
+        m_Movement_Desh = m_Movement.FindAction("Desh", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -263,6 +328,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Horizontal;
     private readonly InputAction m_Movement_Jump;
     private readonly InputAction m_Movement_SharpDescent;
+    private readonly InputAction m_Movement_Desh;
     public struct MovementActions
     {
         private @PlayerInput m_Wrapper;
@@ -270,6 +336,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Horizontal => m_Wrapper.m_Movement_Horizontal;
         public InputAction @Jump => m_Wrapper.m_Movement_Jump;
         public InputAction @SharpDescent => m_Wrapper.m_Movement_SharpDescent;
+        public InputAction @Desh => m_Wrapper.m_Movement_Desh;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -288,6 +355,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SharpDescent.started += instance.OnSharpDescent;
             @SharpDescent.performed += instance.OnSharpDescent;
             @SharpDescent.canceled += instance.OnSharpDescent;
+            @Desh.started += instance.OnDesh;
+            @Desh.performed += instance.OnDesh;
+            @Desh.canceled += instance.OnDesh;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -301,6 +371,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SharpDescent.started -= instance.OnSharpDescent;
             @SharpDescent.performed -= instance.OnSharpDescent;
             @SharpDescent.canceled -= instance.OnSharpDescent;
+            @Desh.started -= instance.OnDesh;
+            @Desh.performed -= instance.OnDesh;
+            @Desh.canceled -= instance.OnDesh;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -341,5 +414,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnHorizontal(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSharpDescent(InputAction.CallbackContext context);
+        void OnDesh(InputAction.CallbackContext context);
     }
 }
