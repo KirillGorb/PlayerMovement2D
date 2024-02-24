@@ -29,6 +29,7 @@ namespace Play.Movement.Controller
         public Transform GetTransform => transform;
 
         public bool IsValueUpPlayer(Transform posTarget) =>
+            //Physics2D.Raycast(transform.position, Vector2.down, higthPlayer).collider.gameObject == posTarget;
             posTarget.position.y + higthPlayer <= transform.position.y;
 
         [Inject]
