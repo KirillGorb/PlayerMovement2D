@@ -16,7 +16,6 @@ namespace Play.Block
             if (other.gameObject.TryGetComponent(out ISettingMoveble setting) && setting.IsValueUpPlayer(transform))
             {
                 _setting = setting;
-                _setting.MoveSetting.IsCanMoveHorizontal.Value = false;
                 offset = setting.GetTransform.position - transform.position;
                 _mover.SetData(offset, transform, true);
             }
@@ -25,10 +24,7 @@ namespace Play.Block
         private void OnCollisionExit2D(Collision2D other)
         {
             if (other.gameObject.TryGetComponent(out ISettingMoveble setting))
-            {
-                setting.MoveSetting.IsCanMoveHorizontal.Value = true;
                 _mover.SetData(offset = Vector2.zero, transform, false);
-            }
         }
     }
 }
