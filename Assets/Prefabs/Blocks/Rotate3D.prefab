@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointConnect: {fileID: 3728296771600710240}
-  speedRot: -0.5
+  speedRot: -0.25
 --- !u!1 &3728296772844404217
 GameObject:
   m_ObjectHideFlags: 0
