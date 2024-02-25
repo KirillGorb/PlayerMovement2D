@@ -3,18 +3,9 @@ using UnityEngine;
 
 namespace Play.Block
 {
-    public enum WindDirection
-    {
-        Up = 0,
-        Down = 1,
-        Right = 2,
-        Left = 3,
-        None
-    }
-
     public class WindSystem : MonoBehaviour
     {
-        [SerializeField] private WindDirection directionType;
+        [SerializeField] private DirectionMovement dir;
         [SerializeField] private float forceWind;
 
         private Vector2 _directionMove;
@@ -23,39 +14,9 @@ namespace Play.Block
 
         private void Start()
         {
-            CheckDirectionWind();
-        }
-
-        private void CheckDirectionWind()
-        {
-            switch (directionType)
-            {
-                case WindDirection.Up:
-                    _directionX = 0;
-                    _directionY = 1;
-                    _directionMove = Vector2.up;
-                    break;
-                case WindDirection.Down:
-                    _directionX = 0;
-                    _directionY = -1;
-                    _directionMove = Vector2.down;
-                    break;
-                case WindDirection.Right:
-                    _directionX = -1;
-                    _directionY = 0;
-                    _directionMove = Vector2.right;
-                    break;
-                case WindDirection.Left:
-                    _directionX = 1;
-                    _directionY = 0;
-                    _directionMove = Vector2.left;
-                    break;
-                case WindDirection.None:
-                    _directionX = 0;
-                    _directionY = 0;
-                    _directionMove = Vector2.zero;
-                    break;
-            }
+            _directionMove = dir.CheckDirectionWind();
+            _directionX = _directionMove.x;
+            _directionY = _directionMove.y;
         }
 
         private void OnTriggerStay2D(Collider2D other)
