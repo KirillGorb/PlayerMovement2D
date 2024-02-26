@@ -27,8 +27,8 @@ namespace Play.Block
             if (_setting.GetTransform.position.z >= 0)
             {
                 _isConnect = false;
-                _setting.JumpSettings.IsCanJump.Value = true;
-                _setting.MoveSetting.IsCanMoveHorizontal.Value = true;
+                _setting.JumpSettings.Activator.OnActiveMove(this);
+                _setting.MoveSetting.Activator.OnActiveMove(this);
                 MovebleTo.MoveToAsync(_setting.GetTransform,
                     new(_setting.GetTransform.position.x, _setting.GetTransform.position.y, 0), 5,
                     0.2f, () => _updater.RemoveCheck(this));
@@ -37,12 +37,12 @@ namespace Play.Block
 
         private async void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.TryGetComponent(out ISettingMoveble setting)&&
+            if (collision.gameObject.TryGetComponent(out ISettingMoveble setting) &&
                 setting.IsValueUpPlayer(transform))
             {
                 _setting = setting;
-                setting.JumpSettings.IsCanJump.Value = false;
-                setting.MoveSetting.IsCanMoveHorizontal.Value = false;
+                _setting.JumpSettings.Activator.OnDisactiveMove(this);
+                _setting.MoveSetting.Activator.OnDisactiveMove(this);
                 await MovebleTo.MoveToAsync(_setting.GetTransform,
                     new(pointConnect.position.x, _setting.GetTransform.position.y, pointConnect.position.z), 5, 0.2f);
                 _isConnect = true;

@@ -1,5 +1,4 @@
 ﻿using UniRx;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Play.Movement.Setting
@@ -8,11 +7,14 @@ namespace Play.Movement.Setting
     public class MovementHorizontalSetting : ScriptableObject
     {
         [SerializeField] private float speed;
-        
+        [SerializeField] private float startSlow;
+
         public ModificateLogic ModValueSpeed { get; } = new ModificateLogic();
         public ModificateLogic ModValueX { get; } = new ModificateLogic();
 
         public float Speed => speed + ModValueSpeed.GetMod;
-        public BoolReactiveProperty IsCanMoveHorizontal { get; } = new BoolReactiveProperty(true);
+        public float Slow => startSlow;
+
+        public Activator Activator { get; } = new Activator(new BoolReactiveProperty(true));
     }
 }

@@ -41,23 +41,44 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Blocks\BlockInjector.cs" />
+     <Compile Include="Assets\Scripts\Blocks\JumperBlock.cs" />
      <Compile Include="Assets\Scripts\Movement\Abstraction\ISettingMoveble.cs" />
      <Compile Include="Assets\Scripts\InputObserv\CheckInput.cs" />
      <Compile Include="Assets\Scripts\Blocks\BlackBlock.cs" />
+     <Compile Include="Assets\Scripts\Blocks\DeshBlock.cs" />
+     <Compile Include="Assets\Scripts\Blocks\RotateBlock.cs" />
      <Compile Include="Assets\Scripts\Camera\MoveCamera.cs" />
      <Compile Include="Assets\Scripts\InputObserv\ObserverForUpdate.cs" />
+     <Compile Include="Assets\Scripts\Blocks\PlayerMoveGrop.cs" />
      <Compile Include="Assets\Scripts\Movement\Settings\JumpSetting.cs" />
      <Compile Include="Assets\Scripts\Blocks\FlashingBlocks.cs" />
      <Compile Include="Assets\Scripts\Blocks\RotateIn3DBlock.cs" />
+     <Compile Include="Assets\Scripts\Blocks\Rotate3DUpdater.cs" />
+     <Compile Include="Assets\Scripts\Blocks\MoveGropUpdater.cs" />
+     <Compile Include="Assets\Scripts\Movement\Controll\MovementInjector.cs" />
      <Compile Include="Assets\Scripts\Movement\Controll\CheckGroundController.cs" />
      <Compile Include="Assets\Scripts\IInit.cs" />
+     <Compile Include="Assets\Scripts\Movement\Settings\ModificateLogic.cs" />
+     <Compile Include="Assets\Scripts\Blocks\IUpdater.cs" />
      <Compile Include="Assets\Scripts\Movement\Controll\MoveController.cs" />
-     <Compile Include="Assets\Scripts\Movement\Settings\MovementHorizontallSetting.cs" />
+     <Compile Include="Assets\Scripts\Movement\Settings\MovementHorizontalSetting.cs" />
      <Compile Include="Assets\Scripts\DopMethot\MovebleTo.cs" />
+     <Compile Include="Assets\Scripts\Blocks\SinkingPlatform.cs" />
+     <Compile Include="Assets\Scripts\Blocks\DisappearingBlock.cs" />
      <Compile Include="Assets\Scripts\Movement\Logic\MoveHorizontal.cs" />
      <Compile Include="Assets\Scripts\Movement\Logic\JumpLogic.cs" />
+     <Compile Include="Assets\Scripts\Blocks\MovementBlock.cs" />
      <Compile Include="Assets\Scripts\Blocks\FallDownBlock.cs" />
+     <Compile Include="Assets\Scripts\Blocks\WindSystem.cs" />
+     <Compile Include="Assets\Scripts\Blocks\InertionBlock.cs" />
      <Compile Include="Assets\Scripts\Blocks\FlashingTwoBlocks.cs" />
+     <Compile Include="Assets\Scripts\Blocks\CobwebBlock.cs" />
+     <Compile Include="Assets\Scripts\Blocks\IceBlock.cs" />
+     <Compile Include="Assets\Scripts\Blocks\ControllerMoveBlock.cs" />
+     <Compile Include="Assets\Scripts\Blocks\Adhesive.cs" />
+     <Compile Include="Assets\Scripts\Blocks\DirectionMovement.cs" />
+     <Compile Include="Assets\Scripts\Movement\Settings\Activator.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Prefabs" />
      <Folder Include="Assets\Scripts\Movement\Settings" />
@@ -68,6 +89,7 @@
      <Folder Include="Assets\Scripts\Movement\Abstraction" />
      <Folder Include="Assets\Scripts\InputObserv" />
      <Folder Include="Assets\Scripts\Camera" />
+     <Folder Include="Assets\Scripts\Movement\SO" />
      <Folder Include="Assets\Scripts\Movement\Controll" />
      <Folder Include="Assets\Scripts\Movement\Logic" />
      <Folder Include="Assets\Scripts\Blocks" />
@@ -318,11 +340,20 @@
      <Reference Include="UnityEditor.UnityConnectModule">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.22f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
      </Reference>
+     <Reference Include="Zenject-usage">
+     <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
+     <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.Burst.Unsafe">
      <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.Unsafe.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Burst.Cecil.Mdb">
      <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
+     </Reference>
+     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
+     <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Burst.Cecil.Pdb">
      <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.CodeGen\Unity.Burst.Cecil.Pdb.dll</HintPath>
@@ -335,15 +366,6 @@
      </Reference>
      <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
      <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-     </Reference>
-     <Reference Include="Zenject-usage">
-     <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll</HintPath>
-     </Reference>
-     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
-     <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
-     </Reference>
-     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
-     <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
      </Reference>
      <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
      <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
@@ -783,9 +805,6 @@
      <Reference Include="Unity.2D.Psdimporter.Editor">
      <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.VisualScripting.Flow">
-     <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
-     </Reference>
      <Reference Include="UnityEditor.UI">
      <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
      </Reference>
@@ -804,8 +823,8 @@
      <Reference Include="Unity.2D.Tilemap.Extras.Editor">
      <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.InternalAPIEditorBridge.001">
-     <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
+     <Reference Include="Unity.VisualScripting.Flow">
+     <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualScripting.Core">
      <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
@@ -821,6 +840,9 @@
      </Reference>
      <Reference Include="Unity.VisualScripting.Shared.Editor">
      <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.InternalAPIEditorBridge.001">
+     <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
      </Reference>
      <Reference Include="Unity.2D.Animation.Runtime">
      <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
@@ -849,15 +871,23 @@
      <Reference Include="Unity.VisualScripting.State">
      <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.ProBuilder">
+     <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Library\ScriptAssemblies\Unity.ProBuilder.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder.AddOns.Editor">
+     <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Library\ScriptAssemblies\Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder.Editor">
+     <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+     <HintPath>C:\Users\Kirill\UnityProgects\Player2DMovement\Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+     </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
       <Project>{bdb1d342-c1f7-f6c5-73e7-62a09a2d072d}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
-    <ProjectReference Include="UniRx.csproj">
-      <Project>{8e84cd50-68c3-08c2-ca1f-9a63cd3dd135}</Project>
-      <Name>UniRx</Name>
     </ProjectReference>
     <ProjectReference Include="Zenject-Editor.csproj">
       <Project>{0cb4cf94-4c1a-f8a8-0d9a-978a94071daf}</Project>
@@ -866,6 +896,10 @@
     <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
       <Project>{49fc4452-5c5b-4177-42cd-7fe655b7a238}</Project>
       <Name>Zenject-PoolMonitor-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniRx.csproj">
+      <Project>{8e84cd50-68c3-08c2-ca1f-9a63cd3dd135}</Project>
+      <Name>UniRx</Name>
     </ProjectReference>
     <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
       <Project>{548b3a1f-9204-baa7-a515-2f1891a79c4d}</Project>

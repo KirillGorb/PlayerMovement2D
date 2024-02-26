@@ -61,22 +61,30 @@ namespace Play.Block
             var dirJ = jumpDir.CheckDirectionWind();
             if (dirJ == Vector2.down || dirJ == Vector2.up || dirJ == Vector2.zero)
             {
-                _setting.MoveSetting.IsCanMoveHorizontal.Value = true;
+                _setting.MoveSetting.Activator.OnActiveMove(this);
                 _setting.GetRigidbody2D.velocity = dirJ * impulceJump;
             }
             else
                 _setting.GetRigidbody2D.velocity = (dirJ + _dir) * impulceJump;
 
             yield return new WaitForSeconds(timeFly);
-            _setting.MoveSetting.IsCanMoveHorizontal.Value = true;
-            _setting.JumpSettings.IsCanJump.Value = true;
+            _setting.MoveSetting.Activator.OnActiveMove(this);
+            _setting.JumpSettings.Activator.OnActiveMove(this);
         }
 
         private void Desconect(bool isActive)
         {
             _isConnect = isActive;
-            _setting.MoveSetting.IsCanMoveHorizontal.Value = !isActive;
-            _setting.JumpSettings.IsCanJump.Value = !isActive;
+            if (isActive)
+            {
+                _setting.MoveSetting.Activator.OnDisactiveMove(this);
+                _setting.JumpSettings.Activator.OnDisactiveMove(this);
+            }
+            else
+            {
+                _setting.MoveSetting.Activator.OnActiveMove(this);
+                _setting.JumpSettings.Activator.OnActiveMove(this);
+            }
         }
     }
 }

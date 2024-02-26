@@ -39,7 +39,7 @@ namespace Play.Block
             {
                 _setting = setting;
                 _isMove = true;
-                setting.MoveSetting.IsCanMoveHorizontal.Value = false;
+                setting.MoveSetting.Activator.OnDisactiveMove(this);
                 _offset = setting.GetTransform.position - transform.position;
             }
         }
@@ -53,7 +53,7 @@ namespace Play.Block
         private void Disconect()
         {
             _isMove = false;
-            _setting.MoveSetting.IsCanMoveHorizontal.Value = true;
+            _setting.MoveSetting.Activator.OnActiveMove(this);
         }
     }
 }

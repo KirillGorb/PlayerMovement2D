@@ -1928,7 +1928,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0.08819887, y: 0, z: 0, w: 0.9961029}
-  m_LocalPosition: {x: 254.07, y: 8.11, z: -13.21}
+  m_LocalPosition: {x: -9.4, y: 0.1, z: -14.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4834,7 +4834,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142134621}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 255.67001, y: 6.41, z: 0.28999996}
+  m_LocalPosition: {x: -7.799988, y: -1.5999999, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5134,6 +5134,10 @@ PrefabInstance:
     - target: {fileID: 973376011738406765, guid: 1dab8f90193da0f4ba623c745d027e64, type: 3}
       propertyPath: m_Name
       value: WindBlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 973376011738406766, guid: 1dab8f90193da0f4ba623c745d027e64, type: 3}
+      propertyPath: dir.directionType
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1dab8f90193da0f4ba623c745d027e64, type: 3}

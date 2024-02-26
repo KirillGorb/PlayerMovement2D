@@ -41,7 +41,7 @@ namespace Play.Block
             {
                 _isConnect = true;
                 _setting = setting;
-                _setting.MoveSetting.IsCanMoveHorizontal.Value = false;
+                _setting.MoveSetting.Activator.OnDisactiveMove(this);
                 _setting.GetRigidbody2D.velocity = new(_dirMove * _setting.MoveSetting.Speed * velocitySpeed,
                     _setting.GetRigidbody2D.velocity.y);
             }
@@ -57,7 +57,7 @@ namespace Play.Block
         {
             _isConnect = false;
             yield return new WaitForSeconds(timeFree);
-            _setting.MoveSetting.IsCanMoveHorizontal.Value = true;
+            _setting.MoveSetting.Activator.OnActiveMove(this);
         }
     }
 }

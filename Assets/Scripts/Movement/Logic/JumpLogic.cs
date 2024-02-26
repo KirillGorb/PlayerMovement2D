@@ -17,9 +17,11 @@ namespace Play.Movement.Controller
         private float _jumpImpulse;
         private float _dopJumpHightTime;
         private float _gravityValue;
+        private float _timePoolClick;
 
         private bool _isJumpFly;
         private bool _sharpDescent;
+        private bool _isPoolJumpClick;
 
         private CheckGroundController _checkGround;
         private CheckGroundController _checkHead;
@@ -37,7 +39,7 @@ namespace Play.Movement.Controller
         public void Init(JumpSetting data)
         {
             _setting = data;
-            _setting.IsCanJump.Subscribe(e => _rd.gravityScale = e ? _gravityValue : 0).AddTo(_disposables);
+            _setting.Activator.Subscribe(e => _rd.gravityScale = e ? _gravityValue : 0);
         }
 
         public void Init(Rigidbody2D data)
@@ -56,7 +58,12 @@ namespace Play.Movement.Controller
 
         private void Jump(bool jumpClick)
         {
-            if (!_setting.IsCanJump.Value) return;
+            if (!_setting.Activator.GetCan) return;
+
+            PoolClick(jumpClick);
+
+            if (_sharpDescent && !_checkGround.CheckGround)
+                SetJump(-_setting.GravityDownMove);
 
             if (_isJumpFly)
             {
@@ -84,18 +91,37 @@ namespace Play.Movement.Controller
                 return;
             }
 
-            if (_checkGround.CheckGround && jumpClick)
+            if (_checkGround.CheckGround && (jumpClick || _isPoolJumpClick))
             {
                 _isJumpFly = true;
+                _isPoolJumpClick = false;
                 _dopJumpHightTime = _setting.DopTimeFly;
                 _jumpImpulse = _setting.JumpImpulse;
                 _jumpTime = _setting.JumpTime;
             }
         }
 
+        private void PoolClick(bool isClick)
+        {
+            if (isClick)
+            {
+                _timePoolClick = _setting.PoolTimeClick;
+                _isPoolJumpClick = true;
+            }
+
+            if (_timePoolClick >= 0 && _isPoolJumpClick)
+                _timePoolClick -= Time.deltaTime;
+            else
+                _isPoolJumpClick = false;
+        }
+
         private void SetJump(float y) =>
             _rd.velocity = new Vector2(_rd.velocity.x, y + _setting.ModValueY.GetMod);
 
-        public void Dispose() => _disposables.Clear();
+        public void Dispose()
+        {
+            _setting.Activator.Dispose();
+            _disposables.Clear();
+        }
     }
 }

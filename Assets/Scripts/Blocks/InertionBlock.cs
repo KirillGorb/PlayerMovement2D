@@ -15,14 +15,14 @@ namespace Play.Block
             if (other.TryGetComponent(out ISettingMoveble settingMoveble))
             {
                 _setting = settingMoveble;
-                _setting.MoveSetting.IsCanMoveHorizontal.Value = false;
-                _setting.JumpSettings.IsCanJump.Value = false;
+                _setting.MoveSetting.Activator.OnDisactiveMove(this);
+                _setting.JumpSettings.Activator.OnDisactiveMove(this);
 
                 _setting.GetRigidbody2D.AddForce(_setting.GetRigidbody2D.velocity * speedDir);
 
                 await Task.Delay((int)(timeAdd * 1000));
-                _setting.MoveSetting.IsCanMoveHorizontal.Value = true;
-                _setting.JumpSettings.IsCanJump.Value = true;
+                _setting.MoveSetting.Activator.OnActiveMove(this);
+                _setting.JumpSettings.Activator.OnActiveMove(this);
             }
         }
     }

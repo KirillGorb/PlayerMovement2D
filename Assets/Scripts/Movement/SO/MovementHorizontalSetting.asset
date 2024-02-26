@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c475f1363c20c1b479a011467ecb8bc2, type: 3}
   m_Name: MovementHorizontalSetting
   m_EditorClassIdentifier: 
-  speed: 10
-  maxClimbAngle: 45
+  speed: 12
+  startSlow: 5

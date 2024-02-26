@@ -23,7 +23,7 @@ namespace Play.Block
         {
             input.DeshInput.Subscribe(e =>
             {
-                if (e != Vector2.zero && !_isTimeOut && _setting != null)
+                if (e != Vector2.zero && !_isTimeOut)
                 {
                     _isDesh = true;
                     _directionMove = e;
@@ -43,8 +43,8 @@ namespace Play.Block
 
         private IEnumerator TimerAiming()
         {
-            _setting.MoveSetting.IsCanMoveHorizontal.Value = false;
-            _setting.JumpSettings.IsCanJump.Value = false;
+            _setting.MoveSetting.Activator.OnDisactiveMove(this);
+            _setting.JumpSettings.Activator.OnDisactiveMove(this);
             _setting.GetRigidbody2D.velocity = Vector2.zero;
 
             _isTimeOut = false;
@@ -53,8 +53,8 @@ namespace Play.Block
 
             if (!_isDesh)
             {
-                _setting.MoveSetting.IsCanMoveHorizontal.Value = true;
-                _setting.JumpSettings.IsCanJump.Value = true;
+                _setting.MoveSetting.Activator.OnActiveMove(this);
+                _setting.JumpSettings.Activator.OnActiveMove(this);
             }
             else
             {
@@ -66,9 +66,8 @@ namespace Play.Block
         private IEnumerator TimerFly()
         {
             yield return new WaitForSeconds(timeFly);
-            _setting.MoveSetting.IsCanMoveHorizontal.Value = true;
-            _setting.JumpSettings.IsCanJump.Value = true;
-            _setting = null;
+            _setting.MoveSetting.Activator.OnActiveMove(this);
+            _setting.JumpSettings.Activator.OnActiveMove(this);
         }
     }
 }

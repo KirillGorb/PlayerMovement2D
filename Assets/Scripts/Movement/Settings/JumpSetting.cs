@@ -22,6 +22,6 @@ namespace Play.Movement.Setting
         public float GravityDownMove => gravityDownMove;
         public float DopTimeFly => dopTimeFly;
 
-        public BoolReactiveProperty IsCanJump { get; } = new BoolReactiveProperty(true);
+        public Activator Activator { get; } = new Activator(new BoolReactiveProperty(true));
     }
 }

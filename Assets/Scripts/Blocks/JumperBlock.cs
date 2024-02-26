@@ -16,7 +16,7 @@ namespace Play.Block
             if (other.TryGetComponent(out ISettingMoveble setting))
             {
                 _setting = setting;
-                _setting.JumpSettings.IsCanJump.Value = false;
+                _setting.JumpSettings.Activator.OnDisactiveMove(this);
                 _setting.GetRigidbody2D.velocity = new Vector2(_setting.GetRigidbody2D.velocity.x, force);
                 StartCoroutine(TimeActive());
             }
@@ -25,7 +25,7 @@ namespace Play.Block
         private IEnumerator TimeActive()
         {
             yield return new WaitForSeconds(timeFly);
-            _setting.JumpSettings.IsCanJump.Value = true;
+            _setting.JumpSettings.Activator.OnActiveMove(this);
         }
     }
 }

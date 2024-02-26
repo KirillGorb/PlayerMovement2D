@@ -17,7 +17,10 @@ namespace Play.Block
             _offset = offset;
             _target = target;
             _isMove = isMove;
-            _setting.MoveSetting.IsCanMoveHorizontal.Value = !isMove;
+            if (isMove)
+                _setting.MoveSetting.Activator.OnDisactiveMove(this);
+            else
+                _setting.MoveSetting.Activator.OnActiveMove(this);
         }
 
         [Inject]

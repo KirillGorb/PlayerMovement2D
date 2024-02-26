@@ -77,8 +77,8 @@ namespace Play.Block
             if (collision.TryGetComponent(out ISettingMoveble setting) && !IsConectPLayer && !_isConect)
             {
                 _setting = setting;
-                _setting.JumpSettings.IsCanJump.Value = false;
-                _setting.MoveSetting.IsCanMoveHorizontal.Value = false;
+                _setting.JumpSettings.Activator.OnDisactiveMove(this);
+                _setting.MoveSetting.Activator.OnDisactiveMove(this);
                 _playerRD = _setting.GetRigidbody2D;
                 _playerPos = _setting.GetTransform;
 
@@ -115,8 +115,8 @@ namespace Play.Block
             _playerRD.AddForce(-_playerRD.velocity / 3);
             yield return new WaitForSeconds(_playerRD.velocity.magnitude /
                                             (_setting.JumpSettings.GravityDownMove * 2.5f));
-            _setting.JumpSettings.IsCanJump.Value = true;
-            _setting.MoveSetting.IsCanMoveHorizontal.Value = true;
+            _setting.JumpSettings.Activator.OnActiveMove(this);
+            _setting.MoveSetting.Activator.OnActiveMove(this);
             IsConectPLayer = false;
         }
     }

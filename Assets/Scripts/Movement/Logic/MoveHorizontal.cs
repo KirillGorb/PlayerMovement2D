@@ -1,8 +1,8 @@
-﻿using Play.Abstraction;
+﻿using System;
+using Play.Abstraction;
 using Play.Input;
 using Play.Movement.Setting;
 using UnityEngine;
-using Zenject;
 
 namespace Play.Movement.Controller
 {
@@ -10,6 +10,8 @@ namespace Play.Movement.Controller
     {
         private MovementHorizontalSetting _setting;
         private Rigidbody2D _rd;
+
+        private float _value;
 
         #region Init
 
@@ -21,8 +23,22 @@ namespace Play.Movement.Controller
 
         private void Move(float directionInput)
         {
-            if (_setting.IsCanMoveHorizontal.Value)
-                _rd.velocity = new Vector2(_setting.Speed * directionInput + _setting.ModValueX.GetMod, _rd.velocity.y);
+            if (!_setting.Activator.GetCan) return;
+
+            _rd.velocity = new Vector2(_setting.Speed * DirSlow(directionInput) + _setting.ModValueX.GetMod,
+                _rd.velocity.y);
+        }
+
+        private float DirSlow(float dir)
+        {
+            if (dir != 0)
+            {
+                _value += _setting.Slow * Time.deltaTime * dir;
+                _value = Math.Clamp(_value, -1, 1);
+                return _value;
+            }
+
+            return _value = 0;
         }
     }
 }

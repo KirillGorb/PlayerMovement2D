@@ -15,6 +15,6 @@ MonoBehaviour:
   velocity: 140
   jumpTime: 0.01
   jumpImpulse: 40
-  gravityDownMove: 25
-  dopTimeFly: 0
-  poolTimeClick: 0.2
+  gravityDownMove: 26
+  dopTimeFly: -1
+  poolTimeClick: 0.1
