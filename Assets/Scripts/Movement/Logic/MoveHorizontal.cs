@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Play.Movement.Controller
 {
-    public class MoveHorizontal : IInit<CheckInput>, IInit<MovementHorizontalSetting>, IInit<Rigidbody2D>
+    public class MoveHorizontal : IInit<InputCenter>, IInit<MovementHorizontalSetting>, IInit<Rigidbody2D>
     {
         private MovementHorizontalSetting _setting;
         private Rigidbody2D _rd;
@@ -15,8 +15,14 @@ namespace Play.Movement.Controller
 
         #region Init
 
-        public void Init(CheckInput data) => data.HorizontalInput.Subscribe(Move);
-        public void Init(MovementHorizontalSetting data) => _setting = data;
+        public void Init(InputCenter data) => data.HorizontalInput.Subscribe(Move);
+
+        public void Init(MovementHorizontalSetting data)
+        {
+            _setting = data;
+            _setting.Activator.Subscribe(e => _value = 0);
+        }
+
         public void Init(Rigidbody2D data) => _rd = data;
 
         #endregion

@@ -19,9 +19,9 @@ namespace Play.Block
         private bool _isTimeOut = true;
 
         [Inject]
-        private void Injecting(CheckInput input)
+        private void Injecting(InputCenter inputCenter)
         {
-            input.DeshInput.Subscribe(e =>
+            inputCenter.DeshInput.Subscribe(e =>
             {
                 if (e != Vector2.zero && !_isTimeOut)
                 {

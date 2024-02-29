@@ -9,12 +9,12 @@ namespace Play.Movement.Setting
         [SerializeField] private float speed;
         [SerializeField] private float startSlow;
 
-        public ModificateLogic ModValueSpeed { get; } = new ModificateLogic();
-        public ModificateLogic ModValueX { get; } = new ModificateLogic();
+        public ModificateLogic ModValueSpeed { get; } = new();
+        public ModificateLogic ModValueX { get; } = new();
 
         public float Speed => speed + ModValueSpeed.GetMod;
         public float Slow => startSlow;
 
-        public Activator Activator { get; } = new Activator(new BoolReactiveProperty(true));
+        public Activator Activator { get; } = new(new BoolReactiveProperty(true));
     }
 }

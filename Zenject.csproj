@@ -73,11 +73,11 @@
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Enemy\EnemyFacade.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Player\PlayerShootHandler.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Util\GameEvents.cs" />
-     <Compile Include="Assets\Plugins\Zenject\Source\Providers\SubContainerCreators\SubContainerCreatorByNewGameObjectDynamicContext.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Binding\Binders\ConcreteIdArgConditionCopyNonLazyBinder.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Util\UnityExtensionMethods.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceIdBinder\FactoryToChoiceIdBinder6.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Providers\IProviderExtensions.cs" />
+     <Compile Include="Assets\Plugins\Zenject\Source\Providers\SubContainerCreators\SubContainerCreatorByNewGameObjectDynamicContext.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Ship\States\ShipStateDead.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\SampleGame2 (Advanced)\Scripts\Misc\LevelBoundary.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Providers\SubContainerCreators\SubContainerCreatorBindInfo.cs" />
@@ -88,8 +88,8 @@
      <Compile Include="Assets\Plugins\Zenject\Source\Factories\Pooling\IMemoryPool.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\SampleGame1 (Beginner)\Scripts\Asteroid\Asteroid.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Factories\IFactory.cs" />
-     <Compile Include="Assets\Plugins\Zenject\Source\Install\Contexts\Context.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Util\ValidationUtil.cs" />
+     <Compile Include="Assets\Plugins\Zenject\Source\Install\Contexts\Context.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Runtime\AnimatorInterfaces\IAnimatorMoveHandler.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Util\ZenjectStateMachineBehaviourAutoInjecter.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryFromBinder\FactoryFromBinder3.cs" />
@@ -349,8 +349,8 @@
      <Compile Include="Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryArgumentsToChoiceBinder\FactoryArgumentsToChoiceBinder3.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Binding\Finalizers\PrefabBindingFinalizer.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Util\ZenUtilInternal.cs" />
-     <Compile Include="Assets\Plugins\Zenject\Source\Runtime\Kernels\SceneKernel.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Binding\Binders\Factory\FactoryToChoiceIdBinder\FactoryToChoiceIdBinder1.cs" />
+     <Compile Include="Assets\Plugins\Zenject\Source\Runtime\Kernels\SceneKernel.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\Signals\Internal\Binders\BindSignal\BindSignalToBinder.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\Signals\Internal\Binders\BindSignal\SignalCallbackWrapper.cs" />
      <Compile Include="Assets\Plugins\Zenject\Source\Install\Contexts\SceneContext.cs" />

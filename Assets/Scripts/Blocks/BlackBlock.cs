@@ -39,9 +39,9 @@ namespace Play.Block
         public float Radiuse => _maxRadiyse / _speed;
 
         [Inject]
-        private void Injecting(CheckInput input)
+        private void Injecting(InputCenter inputCenter)
         {
-            input.JumpInput.Subscribe(e =>
+            inputCenter.JumpInput.Subscribe(e =>
             {
                 if (e && _isConect) StartCoroutine(TimerDisconnect());
             });
@@ -52,7 +52,7 @@ namespace Play.Block
             IsConectPLayer = false;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (!_isConect) return;
 

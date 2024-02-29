@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Play.Movement.Controller
 {
-    public class JumpLogic : IDisposable, IInit<CheckInput>, IInit<JumpSetting>, IInit<Rigidbody2D>,
+    public class JumpLogic : IDisposable, IInit<InputCenter>, IInit<JumpSetting>, IInit<Rigidbody2D>,
         IInit<(CheckGroundController, CheckGroundController)>
     {
         private CompositeDisposable _disposables = new CompositeDisposable();
@@ -30,10 +30,10 @@ namespace Play.Movement.Controller
 
         #region Init
 
-        public void Init(CheckInput data)
+        public void Init(InputCenter data)
         {
             data.JumpInput.Subscribe(Jump);
-            data.SharpDescent.Subscribe(e => _sharpDescent = e).AddTo(_disposables);
+            data.SharpDescentInput.Subscribe(e => _sharpDescent = e).AddTo(_disposables);
         }
 
         public void Init(JumpSetting data)

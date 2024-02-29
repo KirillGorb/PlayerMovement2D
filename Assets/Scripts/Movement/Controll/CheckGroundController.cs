@@ -27,9 +27,8 @@ namespace Play.Movement.Controller
                         _isGround = true;
                 }
                 else
-                {
                     _lastGroundExitTime = Time.time;
-                }
+
                 return _isGround;
             }
         }

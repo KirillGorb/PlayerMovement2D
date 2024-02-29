@@ -17,14 +17,14 @@ namespace Play.Block
         private ISettingMoveble _setting;
 
         [Inject]
-        private void Injecting(CheckInput input)
+        private void Injecting(InputCenter inputCenter)
         {
-            input.JumpInput.Subscribe(e =>
+            inputCenter.JumpInput.Subscribe(e =>
             {
                 if (e && _isConnect)
                     StartCoroutine(TimerActive());
             });
-            input.HorizontalInput.Subscribe(e => _dirMove = e);
+            inputCenter.HorizontalInput.Subscribe(e => _dirMove = e);
         }
 
         private void OnCollisionEnter2D(Collision2D other)

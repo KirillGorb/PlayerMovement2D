@@ -27,14 +27,14 @@ namespace Play.Block
         }
 
         [Inject]
-        private void Injecting(CheckInput input)
+        private void Injecting(InputCenter inputCenter)
         {
-            input.DeshInput.Subscribe(e =>
+            inputCenter.DeshInput.Subscribe(e =>
             {
                 if (_isConnect)
                     _setting.GetRigidbody2D.velocity = e * _dir * speed;
             });
-            input.JumpInput.Subscribe(e =>
+            inputCenter.JumpInput.Subscribe(e =>
             {
                 if (e && _isConnect) StartCoroutine(TimerJump());
             });

@@ -24,10 +24,10 @@ namespace Play.Block
         }
 
         [Inject]
-        private void Inject(CheckInput input, ISettingMoveble setting)
+        private void Inject(InputCenter inputCenter, ISettingMoveble setting)
         {
             _setting = setting;
-            input.HorizontalInput.Subscribe(e =>
+            inputCenter.HorizontalInput.Subscribe(e =>
             {
                 if (_isMove)
                 {
@@ -35,7 +35,7 @@ namespace Play.Block
                     _setting.GetTransform.position = _target.position + _offset;
                 }
             });
-            input.JumpInput.Subscribe(e =>
+            inputCenter.JumpInput.Subscribe(e =>
             {
                 if (e && _isMove) _isMove = false;
             });

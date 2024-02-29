@@ -14,9 +14,9 @@ namespace Play.Block
         private ISettingMoveble _setting;
 
         [Inject]
-        private void Injecting(CheckInput input)
+        private void Injecting(InputCenter inputCenter)
         {
-            input.DeshInput.Subscribe(e =>
+            inputCenter.DeshInput.Subscribe(e =>
             {
                 if (_isMove)
                 {
@@ -26,7 +26,7 @@ namespace Play.Block
                     _setting.GetTransform.position = transform.position + _offset;
                 }
             });
-            input.JumpInput.Subscribe(e =>
+            inputCenter.JumpInput.Subscribe(e =>
             {
                 if (e && _isMove)
                     Disconect();

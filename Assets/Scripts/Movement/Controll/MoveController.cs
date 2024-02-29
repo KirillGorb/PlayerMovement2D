@@ -19,7 +19,7 @@ namespace Play.Movement.Controller
 
         [SerializeField] private float higthPlayer;
 
-        private CheckInput _input;
+        private InputCenter _inputCenter;
         private MoveHorizontal _moveHorizontal;
         private JumpLogic _jump;
 
@@ -33,21 +33,21 @@ namespace Play.Movement.Controller
             posTarget.position.y + higthPlayer <= transform.position.y;
 
         [Inject]
-        private void Inject(CheckInput input)
+        private void Inject(InputCenter inputCenter)
         {
-            _input = input;
+            _inputCenter = inputCenter;
         }
 
         private void Start()
         {
             _moveHorizontal = new MoveHorizontal();
             _moveHorizontal.Init(_rd);
-            _moveHorizontal.Init(_input);
+            _moveHorizontal.Init(_inputCenter);
             _moveHorizontal.Init(horizontalSetting);
 
             _jump = new JumpLogic();
             _jump.Init(_rd);
-            _jump.Init(_input);
+            _jump.Init(_inputCenter);
             _jump.Init(jumpSetting);
             _jump.Init((_checkGroundDown, _checkGroundHead));
         }

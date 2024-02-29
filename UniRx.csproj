@@ -226,8 +226,8 @@
      <Compile Include="Assets\Plugins\UniRx\Scripts\UnityEngineBridge\Triggers\ObservableAnimatorTrigger.cs" />
      <Compile Include="Assets\Plugins\UniRx\Scripts\Disposables\BooleanDisposable.cs" />
      <Compile Include="Assets\Plugins\UniRx\Scripts\Observable.Conversions.cs" />
-     <Compile Include="Assets\Plugins\UniRx\Scripts\Operators\First.cs" />
      <Compile Include="Assets\Plugins\UniRx\Scripts\Disposables\ICancelable.cs" />
+     <Compile Include="Assets\Plugins\UniRx\Scripts\Operators\First.cs" />
      <Compile Include="Assets\Plugins\UniRx\Scripts\UnityEngineBridge\Triggers\ObservableLateUpdateTrigger.cs" />
      <Compile Include="Assets\Plugins\UniRx\Scripts\UnityEngineBridge\Diagnostics\LogEntryExtensions.cs" />
      <Compile Include="Assets\Plugins\UniRx\Scripts\UnityEngineBridge\Triggers\ObservableEndDragTrigger.cs" />

@@ -122,8 +122,8 @@
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\UnitTests\Editor\Bindings\TestFromGetter.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\UnitTests\Editor\Conditions\TestConditionsTarget.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\UnitTests\Editor\Factories\TestFactory.cs" />
-     <Compile Include="Assets\Plugins\Zenject\OptionalExtras\UnitTests\Editor\Factories\Bindings\TestFactoryFrom1.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\UnitTests\Editor\Signals\TestSignalRuntimeDeclaration.cs" />
+     <Compile Include="Assets\Plugins\Zenject\OptionalExtras\UnitTests\Editor\Factories\Bindings\TestFactoryFrom1.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\UnitTests\Editor\BindFeatures\TestNonLazy.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\UnitTests\Editor\Factories\Bindings\TestFactoryFromResolve0.cs" />
      <Compile Include="Assets\Plugins\Zenject\OptionalExtras\UnitTests\Editor\MemoryPool\TestFromPoolableMemoryPoolOne.cs" />
