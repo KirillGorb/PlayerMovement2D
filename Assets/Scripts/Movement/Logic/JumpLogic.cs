@@ -12,16 +12,16 @@ namespace Play.Movement.Controller
     {
         private CompositeDisposable _disposables = new CompositeDisposable();
 
-        private float _startJumpImpulse;
-        private float _jumpTime;
         private float _jumpImpulse;
         private float _dopJumpHightTime;
         private float _gravityValue;
         private float _timePoolClick;
+        private int _countDopJump;
 
         private bool _isJumpFly;
-        private bool _sharpDescent;
         private bool _isPoolJumpClick;
+        private bool _isClickDown;
+        private bool _dirJumpClick;
 
         private CheckGroundController _checkGround;
         private CheckGroundController _checkHead;
@@ -33,7 +33,7 @@ namespace Play.Movement.Controller
         public void Init(InputCenter data)
         {
             data.JumpInput.Subscribe(Jump);
-            data.SharpDescentInput.Subscribe(e => _sharpDescent = e).AddTo(_disposables);
+            data.SharpDescentInput.Subscribe(SharpDescent).AddTo(_disposables);
         }
 
         public void Init(JumpSetting data)
@@ -60,45 +60,53 @@ namespace Play.Movement.Controller
         {
             if (!_setting.Activator.GetCan) return;
 
+            if (_checkGround.CheckGround) _countDopJump = _setting.CountDopJump;
+            
             PoolClick(jumpClick);
-
-            if (_sharpDescent && !_checkGround.CheckGround)
-                SetJump(-_setting.GravityDownMove);
+            DopHightJump(jumpClick);
+            DopJump(jumpClick);
 
             if (_isJumpFly)
             {
-                if (jumpClick && _dopJumpHightTime >= 0)
-                {
-                    _dopJumpHightTime -= Time.deltaTime;
-                    _jumpImpulse = _setting.JumpImpulse;
-                    _jumpTime = _setting.JumpTime;
-                }
-
-                if ((_jumpTime > 0 || _jumpImpulse > 0) && !_checkHead.CheckGround && !_sharpDescent)
-                {
-                    _jumpImpulse -= _setting.Velocity * Time.deltaTime;
-                    _jumpTime -= Time.deltaTime;
-                    SetJump(Mathf.Max(_jumpImpulse, 0));
-                }
+                if (_jumpImpulse >= 0 && !_checkHead.CheckGround)
+                    _jumpImpulse -= Time.deltaTime * _setting.Velocity;
                 else
-                {
-                    _jumpTime = _setting.JumpTime;
-                    _jumpImpulse = _startJumpImpulse;
                     _isJumpFly = false;
-                    return;
-                }
 
+                _rd.velocity = new Vector2(_rd.velocity.x, _jumpImpulse);
                 return;
             }
 
-            if (_checkGround.CheckGround && (jumpClick || _isPoolJumpClick))
+            if (!_isJumpFly && _checkGround.CheckGround && (jumpClick || _isPoolJumpClick))
+                DataJump();
+        }
+
+        private void DataJump()
+        {
+            _countDopJump--;
+            _jumpImpulse = _setting.JumpImpulse;
+            _dopJumpHightTime = _setting.DopHight;
+            _isJumpFly = true;
+        }
+
+        private void DopHightJump(bool jumpClick)
+        {
+            if (jumpClick && _dopJumpHightTime >= 0)
             {
-                _isJumpFly = true;
-                _isPoolJumpClick = false;
-                _dopJumpHightTime = _setting.DopTimeFly;
+                _dopJumpHightTime -= Time.deltaTime;
                 _jumpImpulse = _setting.JumpImpulse;
-                _jumpTime = _setting.JumpTime;
             }
+        }
+
+        private void DopJump(bool jumpClick)
+        {
+            if (jumpClick && _dirJumpClick)
+                _isClickDown = true;
+            _dirJumpClick = !jumpClick;
+
+            if (_isClickDown && _countDopJump > 0)
+                DataJump();
+            _isClickDown = false;
         }
 
         private void PoolClick(bool isClick)
@@ -115,8 +123,15 @@ namespace Play.Movement.Controller
                 _isPoolJumpClick = false;
         }
 
-        private void SetJump(float y) =>
-            _rd.velocity = new Vector2(_rd.velocity.x, y + _setting.ModValueY.GetMod);
+        private void SharpDescent(bool isClick)
+        {
+            if (!_setting.Activator.GetCan) return;
+            if (isClick && !_checkGround.CheckGround)
+            {
+                _isJumpFly = false;
+                _rd.AddForce(-_setting.GravityDownMove * Vector2.up);
+            }
+        }
 
         public void Dispose()
         {

@@ -1,5 +1,7 @@
+using System;
 using Play.Input;
 using Play.Movement.Abstraction;
+using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -11,26 +13,29 @@ namespace Play.Block
 
         private bool _isMove = false;
         private Vector3 _offset;
+        private Vector3 _dir;
         private ISettingMoveble _setting;
 
         [Inject]
         private void Injecting(InputCenter inputCenter)
         {
-            inputCenter.DeshInput.Subscribe(e =>
-            {
-                if (_isMove)
-                {
-                    transform.position =
-                        Vector2.MoveTowards(transform.position, transform.position + (Vector3)e,
-                            speed * Time.deltaTime);
-                    _setting.GetTransform.position = transform.position + _offset;
-                }
-            });
+            inputCenter.DeshInput.Subscribe(e => _dir = e);
             inputCenter.JumpInput.Subscribe(e =>
             {
                 if (e && _isMove)
                     Disconect();
             });
+        }
+
+        private void Update()
+        {
+            if (_isMove)
+            {
+                transform.position =
+                    Vector2.MoveTowards(transform.position, transform.position + _dir,
+                        speed * Time.deltaTime);
+                _setting.GetTransform.position = transform.position + _offset;
+            }
         }
 
         private void OnCollisionEnter2D(Collision2D other)

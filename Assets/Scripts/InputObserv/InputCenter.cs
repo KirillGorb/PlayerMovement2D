@@ -1,4 +1,6 @@
+using System;
 using UniRx;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Play.Input
@@ -33,13 +35,12 @@ namespace Play.Input
 
             JumpInput.SetValue(Observable.EveryFixedUpdate(),
                 () => _clickJumpValue).AddTo(_disposables);
-            
+
             HorizontalInput.SetValue(Observable.EveryFixedUpdate(),
                 () => _input.Movement.Horizontal.ReadValue<float>()).AddTo(_disposables);
-            
-            DeshInput.SetValue(Observable.EveryUpdate(),
-                () => _input.Movement.Desh.ReadValue<Vector2>()).AddTo(_disposables);
 
+            DeshInput.SetValue(Observable.EveryFixedUpdate(),
+                () => _input.Movement.Desh.ReadValue<Vector2>()).AddTo(_disposables);
         }
 
         private void OnDestroy()

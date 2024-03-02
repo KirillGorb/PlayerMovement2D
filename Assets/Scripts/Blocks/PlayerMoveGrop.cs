@@ -6,25 +6,18 @@ namespace Play.Block
 {
     public class PlayerMoveGrop : MonoBehaviour
     {
-        private Vector2 offset;
-        private ISettingMoveble _setting;
-
         [Inject] private MoveGropUpdater _mover;
 
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.TryGetComponent(out ISettingMoveble setting) && setting.IsValueUpPlayer(transform))
-            {
-                _setting = setting;
-                offset = setting.GetTransform.position - transform.position;
-                _mover.SetData(offset, transform, true);
-            }
+                _mover.SetData(setting.GetTransform.position - transform.position, transform, true);
         }
 
         private void OnCollisionExit2D(Collision2D other)
         {
             if (other.gameObject.TryGetComponent(out ISettingMoveble setting))
-                _mover.SetData(offset = Vector2.zero, transform, false);
+                _mover.SetData(Vector2.zero, transform, false);
         }
     }
 }

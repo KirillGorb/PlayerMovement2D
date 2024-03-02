@@ -1,4 +1,5 @@
-﻿using Play.Input;
+﻿using System;
+using Play.Input;
 using Play.Movement.Abstraction;
 using Play.Movement.Setting;
 using UnityEngine;
@@ -42,13 +43,13 @@ namespace Play.Movement.Controller
         {
             _moveHorizontal = new MoveHorizontal();
             _moveHorizontal.Init(_rd);
-            _moveHorizontal.Init(_inputCenter);
             _moveHorizontal.Init(horizontalSetting);
+            _moveHorizontal.Init(_inputCenter);
 
             _jump = new JumpLogic();
             _jump.Init(_rd);
-            _jump.Init(_inputCenter);
             _jump.Init(jumpSetting);
+            _jump.Init(_inputCenter);
             _jump.Init((_checkGroundDown, _checkGroundHead));
         }
     }

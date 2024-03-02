@@ -58,7 +58,7 @@ namespace Play.Block
             }
             else
             {
-                _setting.GetRigidbody2D.velocity = _directionMove * force;
+                _setting.GetRigidbody2D.velocity = _directionMove.normalized * force;
                 StartCoroutine(TimerFly());
             }
         }

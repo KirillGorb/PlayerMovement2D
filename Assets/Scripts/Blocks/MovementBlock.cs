@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Play.Block
@@ -10,7 +9,7 @@ namespace Play.Block
         [SerializeField] private float speed;
 
         private float _t;
-        private Vector2 nextPoint;
+        private Vector2 _nextPoint;
         private int _id;
 
         private void Start()
@@ -21,7 +20,7 @@ namespace Play.Block
         private void Update()
         {
             _t += Time.deltaTime * speed;
-            block.transform.position = Vector2.Lerp(points[_id].position, nextPoint, _t);
+            block.transform.position = Vector2.Lerp(points[_id].position, _nextPoint, _t);
 
             if (_t >= 1)
             {
@@ -30,8 +29,8 @@ namespace Play.Block
                 CheckNextPoint();
             }
         }
-        
-        private void CheckNextPoint()=>
-            nextPoint = points[points.Length > _id + 1 ? _id + 1 : 0].position;
+
+        private void CheckNextPoint() =>
+            _nextPoint = points[points.Length > _id + 1 ? _id + 1 : 0].position;
     }
 }

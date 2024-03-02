@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: JumpSetting
   m_EditorClassIdentifier: 
   velocity: 140
-  jumpTime: 0.01
   jumpImpulse: 40
-  gravityDownMove: 26
-  dopTimeFly: -1
-  poolTimeClick: 0.1
+  dopHight: -1
+  dopJumpTime: 0.2
+  countDopJump: 1
+  gravityDownMove: 2500
+  poolTimeClick: 0.2

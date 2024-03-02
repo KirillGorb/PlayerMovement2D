@@ -6,7 +6,7 @@ namespace Play.Movement.Controller
     {
         [SerializeField] private Transform checkGroundPoint;
         [SerializeField] private float radius;
-        [SerializeField] private float _groundExitCooldown;
+        [SerializeField] private float _groundExitCooldown = 1;
         [SerializeField] private LayerMask layerGround;
 
         private float _lastGroundExitTime;

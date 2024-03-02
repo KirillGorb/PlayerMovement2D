@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MovementHorizontalSetting
   m_EditorClassIdentifier: 
   speed: 12
-  startSlow: 5
+  startSlow: 5.5
