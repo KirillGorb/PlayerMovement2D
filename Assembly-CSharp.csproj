@@ -51,7 +51,7 @@
      <Compile Include="Assets\Scripts\Camera\MoveCamera.cs" />
      <Compile Include="Assets\Scripts\Blocks\Adhesive.cs" />
      <Compile Include="Assets\Scripts\InputObserv\ObserverFor.cs" />
-     <Compile Include="Assets\Scripts\Blocks\PlayerMoveGrop.cs" />
+     <Compile Include="Assets\Scripts\Blocks\Movement\PlayerMoveGrop.cs" />
      <Compile Include="Assets\Scripts\Movement\Settings\JumpSetting.cs" />
      <Compile Include="Assets\Scripts\Blocks\CobwebBlock.cs" />
      <Compile Include="Assets\Scripts\Blocks\FlashingBlocks.cs" />
@@ -59,9 +59,10 @@
      <Compile Include="Assets\Scripts\Blocks\Rotate3DUpdater.cs" />
      <Compile Include="Assets\Scripts\Movement\Settings\Activator.cs" />
      <Compile Include="Assets\Scripts\Blocks\MoveGropUpdater.cs" />
+     <Compile Include="Assets\Scripts\Blocks\Movement\OnClickMovementBlock.cs" />
      <Compile Include="Assets\Scripts\Blocks\IceBlock.cs" />
      <Compile Include="Assets\Scripts\Movement\Controll\MovementInjector.cs" />
-     <Compile Include="Assets\Scripts\Blocks\ControllerMoveBlock.cs" />
+     <Compile Include="Assets\Scripts\Blocks\Movement\ControllerMoveBlock.cs" />
      <Compile Include="Assets\Scripts\Movement\Controll\CheckGroundController.cs" />
      <Compile Include="Assets\Scripts\IInit.cs" />
      <Compile Include="Assets\Scripts\Movement\Settings\ModificateLogic.cs" />
@@ -74,12 +75,13 @@
      <Compile Include="Assets\Scripts\Blocks\DirectionMovement.cs" />
      <Compile Include="Assets\Scripts\Movement\Logic\MoveHorizontal.cs" />
      <Compile Include="Assets\Scripts\Movement\Logic\JumpLogic.cs" />
-     <Compile Include="Assets\Scripts\Blocks\MovementBlock.cs" />
+     <Compile Include="Assets\Scripts\Blocks\Movement\MovementBlock.cs" />
      <Compile Include="Assets\Scripts\Blocks\FallDownBlock.cs" />
      <Compile Include="Assets\Scripts\Blocks\WindSystem.cs" />
      <Compile Include="Assets\Scripts\Blocks\InertionBlock.cs" />
      <Compile Include="Assets\Scripts\Blocks\FlashingTwoBlocks.cs" />
      <Folder Include="Assets" />
+     <Folder Include="Assets\Scripts\Blocks\Movement" />
      <Folder Include="Assets\Prefabs" />
      <Folder Include="Assets\Scripts\Movement\Settings" />
      <Folder Include="Assets\Scripts\DopMethot" />

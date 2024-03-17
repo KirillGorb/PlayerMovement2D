@@ -16,6 +16,7 @@ namespace Play.Block
         [SerializeField] private float _k_speedOverRadiyse = 3.5f;
         [SerializeField] private float _k_speedDropDistancy = 6;
         [SerializeField] private float _k_minSpeed = 6;
+        [SerializeField] private float timeFly;
 
         private Rigidbody2D _playerRD;
         private Transform _playerPos;
@@ -113,8 +114,7 @@ namespace Play.Block
         {
             _isConect = false;
             _playerRD.AddForce(-_playerRD.velocity / 3);
-            yield return new WaitForSeconds(_playerRD.velocity.magnitude /
-                                            (_setting.JumpSettings.GravityDownMove * 2.5f));
+            yield return new WaitForSeconds(timeFly);
             _setting.JumpSettings.Activator.OnActiveMove(this);
             _setting.MoveSetting.Activator.OnActiveMove(this);
             IsConectPLayer = false;

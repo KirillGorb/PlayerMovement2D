@@ -1,10 +1,7 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using Play.Input;
 using Play.Movement.Abstraction;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Play.Block
@@ -19,7 +16,7 @@ namespace Play.Block
 
         private ISettingMoveble _setting;
         private Vector2 _dir;
-        private bool _isConnect = false;
+        private bool _isConnect;
 
         private void Start()
         {

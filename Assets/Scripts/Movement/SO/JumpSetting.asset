@@ -15,7 +15,7 @@ MonoBehaviour:
   velocity: 140
   jumpImpulse: 40
   dopHight: -1
-  dopJumpTime: 0.2
-  countDopJump: 1
+  dopJumpTime: 0.01
+  countDopJump: -1
   gravityDownMove: 2500
   poolTimeClick: 0.2
